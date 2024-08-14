@@ -29,11 +29,26 @@ require("lazy").setup({
 }, lazy_config)
 
 -- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
+-- dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "syntax")
+require("base46").load_all_highlights()
+
+require('gitblame').setup {
+     --Note how the `gitblame_` prefix is omitted in `setup`
+    enabled = false,
+}
+
+
+
+vim.keymap.set({ "n", "x" }, "<leader>y", [["+y]]) -- copy to system clipboard
+
+vim.keymap.set({ "n", "x" }, "<leader>p", [["+p]]) -- paste from system clipboard
 
 require "nvchad.autocmds"
 
 vim.schedule(function()
   require "mappings"
 end)
+
+
+
